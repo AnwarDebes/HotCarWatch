@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hotcarwatch"
+version = "0.1.0"
+description = "Predict in-vehicle temperature and time-to-hyperthermia for children and pets"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = ["numpy>=1.24", "matplotlib>=3.7"]
+
+[tool.setuptools.packages.find]
+include = ["hotcarwatch*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,91 @@
+<svg width="1200" height="320" viewBox="0 0 1200 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="HotCarWatch banner">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#241015"/>
+      <stop offset="1" stop-color="#3a1a14"/>
+    </linearGradient>
+    <linearGradient id="curveFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff8c42" stop-opacity="0.30"/>
+      <stop offset="1" stop-color="#ff8c42" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="320" rx="16" fill="url(#bg)"/>
+  <rect x="1.5" y="1.5" width="1197" height="317" rx="15" fill="none" stroke="#ff8c42" stroke-opacity="0.25" stroke-width="3"/>
+
+  <!-- subtle divider before chart panel -->
+  <line x1="790" y1="56" x2="790" y2="264" stroke="#f6ece2" stroke-opacity="0.10" stroke-width="2"/>
+
+  <!-- faint grid, chart panel -->
+  <g stroke="#f6ece2" stroke-opacity="0.07" stroke-width="1">
+    <line x1="820" y1="96"  x2="1150" y2="96"/>
+    <line x1="820" y1="164" x2="1150" y2="164"/>
+  </g>
+
+  <!-- sun -->
+  <circle cx="76" cy="72" r="16" fill="#ffb13d"/>
+  <g stroke="#ffb13d" stroke-width="4" stroke-linecap="round">
+    <line x1="76" y1="42" x2="76" y2="50"/>
+    <line x1="76" y1="94" x2="76" y2="102"/>
+    <line x1="46" y1="72" x2="54" y2="72"/>
+    <line x1="98" y1="72" x2="106" y2="72"/>
+    <line x1="55" y1="51" x2="61" y2="57"/>
+    <line x1="91" y1="87" x2="97" y2="93"/>
+    <line x1="55" y1="93" x2="61" y2="87"/>
+    <line x1="91" y1="57" x2="97" y2="51"/>
+  </g>
+
+  <!-- heat shimmer above the car -->
+  <g fill="none" stroke="#ff8c42" stroke-width="4.5" stroke-linecap="round" opacity="0.55">
+    <path d="M 130 148 C 122 136 138 128 130 116 C 124 107 132 100 130 92"/>
+    <path d="M 156 144 C 146 130 166 122 156 108 C 149 98 159 90 156 82"/>
+    <path d="M 182 148 C 174 136 190 128 182 116 C 176 107 184 100 182 92"/>
+  </g>
+
+  <!-- ground shadow -->
+  <ellipse cx="156" cy="252" rx="100" ry="11" fill="#160a0c"/>
+
+  <!-- car -->
+  <path d="M 105 196 L 118 168 Q 121 162 128 162 L 184 162 Q 191 162 194 168 L 208 196 Z" fill="#f6ece2"/>
+  <path d="M 124 192 L 133 170 L 153 170 L 153 192 Z" fill="#2a1216"/>
+  <path d="M 160 192 L 160 170 L 180 170 L 189 192 Z" fill="#2a1216"/>
+  <rect x="68" y="194" width="176" height="44" rx="14" fill="#f6ece2"/>
+  <circle cx="112" cy="238" r="16" fill="#160a0c"/>
+  <circle cx="112" cy="238" r="6.5" fill="#5b4a4e"/>
+  <circle cx="202" cy="238" r="16" fill="#160a0c"/>
+  <circle cx="202" cy="238" r="6.5" fill="#5b4a4e"/>
+
+  <!-- wordmark -->
+  <text x="280" y="130" font-family="Segoe UI, Helvetica, Arial, sans-serif"
+        font-size="54" font-weight="800" letter-spacing="0.5">
+    <tspan fill="#f6ece2">HotCar</tspan><tspan fill="#ff8c42">Watch</tspan>
+  </text>
+  <text x="283" y="172" font-family="Segoe UI, Helvetica, Arial, sans-serif"
+        font-size="21" fill="#d9bfae">Never leave them in the car.</text>
+  <text x="283" y="202" font-family="Segoe UI, Helvetica, Arial, sans-serif"
+        font-size="21" fill="#d9bfae">See how fast the cabin heats up.</text>
+  <text x="283" y="246" font-family="Segoe UI, Helvetica, Arial, sans-serif"
+        font-size="12.5" fill="#9a8378" letter-spacing="1">CABIN THERMAL MODEL &#183; HYPERTHERMIA RISK &#183; FREE &#183; NO LOGIN</text>
+
+  <!-- danger threshold -->
+  <line x1="818" y1="128" x2="1150" y2="128" stroke="#ff4d4d" stroke-width="2.5" stroke-dasharray="8 6" opacity="0.85"/>
+  <text x="1146" y="120" font-family="Segoe UI, Helvetica, Arial, sans-serif"
+        font-size="14" fill="#ff6b6b" text-anchor="end">danger</text>
+
+  <!-- cabin temperature rise curve -->
+  <path d="M 828 232 C 875 150, 925 116, 990 102 C 1050 92, 1110 89, 1148 88"
+        fill="none" stroke="#ff8c42" stroke-width="4.5" stroke-linejoin="round"/>
+  <path d="M 828 232 C 875 150, 925 116, 990 102 C 1050 92, 1110 89, 1148 88
+           L 1148 244 L 828 244 Z"
+        fill="url(#curveFill)" stroke="none"/>
+
+  <!-- crossing marker -->
+  <circle cx="916" cy="128" r="6.5" fill="#f6ece2" stroke="#ff4d4d" stroke-width="3"/>
+
+  <!-- axis -->
+  <line x1="818" y1="244" x2="1150" y2="244" stroke="#9a8378" stroke-width="2"/>
+  <text x="824" y="266" font-family="Segoe UI, Helvetica, Arial, sans-serif"
+        font-size="14" fill="#9a8378">0 min</text>
+  <text x="1146" y="266" font-family="Segoe UI, Helvetica, Arial, sans-serif"
+        font-size="14" fill="#9a8378" text-anchor="end">60 min</text>
+</svg>

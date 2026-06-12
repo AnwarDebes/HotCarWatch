@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="description" content="How fast does a parked car heat up? Predict the cabin temperature and the time-to-hyperthermia for a child or pet. Free, no login, runs in your browser." />
+<title>HotCarWatch: never leave them in the car</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header>
+  <div class="brand">
+    <span class="logo">HotCarWatch</span>
+    <span class="tagline">never leave them in the car</span>
+  </div>
+  <div class="meta">no login, no tracking, runs offline</div>
+</header>
+
+<main>
+  <section class="card inputs">
+    <div class="alert">
+      <strong>The only safe option is: do not leave any child or pet in
+      any parked vehicle for any length of time.</strong>
+    </div>
+
+    <h2>1. Conditions</h2>
+    <div class="row">
+      <label>Outdoor temperature
+        <input type="number" id="outdoorC" min="-5" max="50" step="0.5" value="27" />
+        <span class="unit">&deg;C</span>
+      </label>
+      <label>Sun
+        <select id="sun">
+          <option value="1000">Direct full sun (1000 W/m&sup2;)</option>
+          <option value="900" selected>Bright sun (900)</option>
+          <option value="600">Hazy / partial sun (600)</option>
+          <option value="350">Overcast (350)</option>
+          <option value="150">Deep shade (150)</option>
+        </select>
+      </label>
+    </div>
+    <div class="row presets">
+      <button data-preset='{"T":22,"S":900}'  class="preset-btn">Mild spring day (22 &deg;C)</button>
+      <button data-preset='{"T":34,"S":900}'  class="preset-btn">Hot southern day (34 &deg;C)</button>
+      <button data-preset='{"T":42,"S":1000}' class="preset-btn">Phoenix summer (42 &deg;C)</button>
+    </div>
+
+    <h2>2. The vehicle</h2>
+    <div class="row">
+      <label>Vehicle
+        <select id="vehicle">
+          <option value="compact_sedan_light">Compact sedan, light color</option>
+          <option value="compact_sedan_dark">Compact sedan, dark color</option>
+          <option value="midsize_sedan_light" selected>Midsize sedan, light color</option>
+          <option value="midsize_sedan_dark">Midsize sedan, dark color</option>
+          <option value="suv_dark_tinted">Large SUV, dark, tinted glass</option>
+          <option value="minivan_light">Minivan, light color</option>
+        </select>
+      </label>
+    </div>
+    <div class="row">
+      <label>Windows
+        <select id="window">
+          <option value="0" selected>Closed</option>
+          <option value="0.05">Cracked ~1.5 inches</option>
+          <option value="0.45">Half open</option>
+        </select>
+      </label>
+      <label>Windshield sunshade
+        <select id="sunshade">
+          <option value="false" selected>No</option>
+          <option value="true">Yes (reflective)</option>
+        </select>
+      </label>
+    </div>
+
+    <h2>3. Who's in the car?</h2>
+    <div class="row">
+      <label>Occupant
+        <select id="occupant">
+          <option value="infant_6mo">Infant, ~6 months (7.5 kg)</option>
+          <option value="toddler_2y" selected>Toddler, ~2 years (12 kg)</option>
+          <option value="child_5y">Child, ~5 years (18 kg)</option>
+          <option value="adult">Adult (75 kg)</option>
+          <option value="small_dog_10kg">Small dog, 10 kg</option>
+          <option value="medium_dog_25kg">Medium dog (Lab), 25 kg</option>
+          <option value="brachycephalic_dog_15kg">Bulldog / pug (brachycephalic)</option>
+          <option value="cat_5kg">Cat, 5 kg</option>
+        </select>
+      </label>
+    </div>
+    <div class="row">
+      <label>How long are you planning to be away?
+        <input type="number" id="planMin" min="1" max="180" value="15" />
+        <span class="unit">min</span>
+      </label>
+    </div>
+
+    <div class="row">
+      <button id="recompute" class="primary">Forecast cabin + occupant</button>
+      <button id="saveProfile" class="ghost">Save my vehicle</button>
+    </div>
+    <div class="hint" id="statusHint"></div>
+  </section>
+
+  <section class="card output">
+    <div class="output-header">
+      <h2>What happens in the cabin</h2>
+      <div class="now-pill" id="nowBox">
+        <div class="now-label">cabin at your planned return</div>
+        <div class="now-value"><span id="returnCabin">-</span><span class="unit"> &deg;C</span></div>
+        <div class="now-sub" id="returnImpact">-</div>
+      </div>
+    </div>
+
+    <canvas id="chart" width="900" height="320" aria-label="Cabin temperature over time"></canvas>
+    <div class="chart-legend">
+      <span class="dot outdoor"></span> Outdoor
+      <span class="dot cabin"></span> Cabin air
+      <span class="dot core"></span> Occupant core body temperature
+      <span class="dot threshold"></span> Heat-stroke threshold (40 &deg;C)
+    </div>
+
+    <h3>Time to critical milestones</h3>
+    <div class="metric-row">
+      <div class="metric">
+        <div class="metric-value" id="t_thresh">-</div>
+        <div class="metric-label">Time to heat-stroke threshold</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value" id="t_40">-</div>
+        <div class="metric-label">Time to core 40 &deg;C</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value" id="t_crit">-</div>
+        <div class="metric-label">Time to critical 42 &deg;C</div>
+      </div>
+    </div>
+
+    <h3>What "interventions" actually buy</h3>
+    <p style="margin: 0.4rem 0 0.4rem 0; color: #5b6566; font-size: 0.85rem;">
+      None of these make the car safe.  They only delay heat injury.
+    </p>
+    <ol id="recs" class="recs"></ol>
+
+    <p class="disclaimer">HotCarWatch is a public-domain physical model.  Do
+    not use it to justify leaving any child or animal in any parked vehicle.
+    In the US, 1047 children have died of vehicular heat stroke since 1998
+    (NoHeatstroke.org, Jan Null SJSU).  In every case, the only safe option
+    was to take the child with you.</p>
+  </section>
+</main>
+
+<footer>
+  <span>Based on McLaren/Null/Quinn 2005 Pediatrics &amp; Vanos et al.
+  2018 Temperature.  Cabin lumped-capacitance model.</span>
+  <a href="./about.html">how it works</a>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

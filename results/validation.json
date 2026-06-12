@@ -1,0 +1,149 @@
+{
+  "per_case": [
+    {
+      "T_amb_C": 22.0,
+      "t_min": 10,
+      "rise_C_predicted": 8.670409337546523,
+      "rise_C_measured": 6.0,
+      "tolerance_C": 4.0,
+      "within_tolerance": true
+    },
+    {
+      "T_amb_C": 22.0,
+      "t_min": 20,
+      "rise_C_predicted": 13.517949847840953,
+      "rise_C_measured": 13.5,
+      "tolerance_C": 4.0,
+      "within_tolerance": true
+    },
+    {
+      "T_amb_C": 22.0,
+      "t_min": 30,
+      "rise_C_predicted": 17.223921262372343,
+      "rise_C_measured": 16.5,
+      "tolerance_C": 4.0,
+      "within_tolerance": true
+    },
+    {
+      "T_amb_C": 22.0,
+      "t_min": 60,
+      "rise_C_predicted": 21.88222850661829,
+      "rise_C_measured": 22.0,
+      "tolerance_C": 4.0,
+      "within_tolerance": true
+    },
+    {
+      "T_amb_C": 32.0,
+      "t_min": 10,
+      "rise_C_predicted": 8.670409337546523,
+      "rise_C_measured": 7.5,
+      "tolerance_C": 4.0,
+      "within_tolerance": true
+    },
+    {
+      "T_amb_C": 32.0,
+      "t_min": 20,
+      "rise_C_predicted": 13.517949847840953,
+      "rise_C_measured": 14.0,
+      "tolerance_C": 4.0,
+      "within_tolerance": true
+    },
+    {
+      "T_amb_C": 32.0,
+      "t_min": 30,
+      "rise_C_predicted": 17.223921262372343,
+      "rise_C_measured": 17.5,
+      "tolerance_C": 4.0,
+      "within_tolerance": true
+    },
+    {
+      "T_amb_C": 32.0,
+      "t_min": 60,
+      "rise_C_predicted": 21.88222850661829,
+      "rise_C_measured": 22.0,
+      "tolerance_C": 4.0,
+      "within_tolerance": true
+    },
+    {
+      "check": "vanos_2018_sun_shade_delta_C",
+      "predicted_C": 12.091969658169205,
+      "target_range_C": [
+        4.0,
+        14.0
+      ],
+      "within_tolerance": true
+    },
+    {
+      "check": "tau_min",
+      "archetype": "compact_sedan_light",
+      "tau_min_predicted": 21.11613876319759,
+      "tau_min_published_range": [
+        15.0,
+        30.0
+      ],
+      "within_tolerance": true
+    },
+    {
+      "check": "tau_min",
+      "archetype": "compact_sedan_dark",
+      "tau_min_predicted": 21.11613876319759,
+      "tau_min_published_range": [
+        15.0,
+        30.0
+      ],
+      "within_tolerance": true
+    },
+    {
+      "check": "tau_min",
+      "archetype": "midsize_sedan_light",
+      "tau_min_predicted": 22.941970310391362,
+      "tau_min_published_range": [
+        15.0,
+        30.0
+      ],
+      "within_tolerance": true
+    },
+    {
+      "check": "tau_min",
+      "archetype": "midsize_sedan_dark",
+      "tau_min_predicted": 22.941970310391362,
+      "tau_min_published_range": [
+        15.0,
+        30.0
+      ],
+      "within_tolerance": true
+    },
+    {
+      "check": "tau_min",
+      "archetype": "suv_dark_tinted",
+      "tau_min_predicted": 25.641025641025642,
+      "tau_min_published_range": [
+        15.0,
+        30.0
+      ],
+      "within_tolerance": true
+    },
+    {
+      "check": "tau_min",
+      "archetype": "minivan_light",
+      "tau_min_predicted": 22.564102564102562,
+      "tau_min_published_range": [
+        15.0,
+        30.0
+      ],
+      "within_tolerance": true
+    },
+    {
+      "check": "tau_min",
+      "archetype": "midsize_dark_with_sunshade",
+      "tau_min_predicted": 22.941970310391362,
+      "tau_min_published_range": [
+        15.0,
+        30.0
+      ],
+      "within_tolerance": true
+    }
+  ],
+  "n_passed": 16,
+  "n_total": 16
+}

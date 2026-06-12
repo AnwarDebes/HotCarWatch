@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>How HotCarWatch works</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header>
+  <div class="brand">
+    <a href="./" style="text-decoration:none;color:inherit"><span class="logo">HotCarWatch</span></a>
+    <span class="tagline">how it works</span>
+  </div>
+  <a class="meta" href="./">&larr; back to the tool</a>
+</header>
+
+<main style="grid-template-columns:1fr;max-width:780px">
+<section class="card">
+
+<div class="alert">
+The only intervention that prevents heat injury with certainty is to
+never leave any child or pet in any parked vehicle for any length of
+time.
+</div>
+
+<h2>The model</h2>
+<p>HotCarWatch uses the standard cabin lumped-capacitance ODE.  Cabin
+air, dashboard, seats, and the inner steel plate are treated as one
+thermal mass M (J/K).  Three flux terms act on the lump:</p>
+<pre style="background:#fbfaf6;padding:0.8rem;border-radius:6px;overflow-x:auto">
+M dT_c/dt = Q_solar(t) - U*A*(T_c - T_amb) - vent*(T_c - T_amb)
+</pre>
+<p>The equilibrium cabin temperature is T_c,eq = T_amb + Q_solar / (U*A + vent), and
+the time constant is &tau; = M / (U*A + vent).  For a typical sedan, &tau; &asymp;
+22 min, matching McLaren et al. 2005 and the NIA tabulated values.</p>
+
+<h2>Occupant core temperature</h2>
+<p>The occupant's core body temperature follows a simplified heat balance
+driven by the cabin air temperature:</p>
+<pre style="background:#fbfaf6;padding:0.8rem;border-radius:6px;overflow-x:auto">
+m_body c_body dT_core/dt = Q_metabolic + h*A*(T_cab - T_core) - Q_evap
+</pre>
+<p>Sweating (humans) provides evaporative cooling up to ~38 &deg;C cabin
+air, then derates above that.  Dogs cool only by panting (no sweat
+glands except paw pads), and panting is ineffective above ~40 &deg;C cabin
+air.  Cats and brachycephalic breeds (pugs, bulldogs) thermoregulate
+even worse.</p>
+
+<h2>The data the model is calibrated to</h2>
+<ul>
+<li><strong>McLaren, Null & Quinn 2005</strong> <em>Pediatrics</em> 116:e109-e112 -- cabin rise of ~22 &deg;C above ambient in 1 hour, independent of outdoor temperature; 80% of total rise in first 30 min; cracking windows had negligible effect.</li>
+<li><strong>Grundstein, Meentemeyer & Dowd 2009</strong> <em>Int J Biometeorol</em> 53:255-261 -- maximum cabin temperatures 41-76 &deg;C in Athens GA summer.</li>
+<li><strong>Vanos et al. 2018</strong> <em>Temperature</em> 5:276-292 -- Phoenix shade vs sun cabin delta of ~8 &deg;C.</li>
+<li><strong>Bouchama & Knochel 2002</strong> <em>NEJM</em> 346:1978 -- heat stroke at core 40 &deg;C, cell death and likely fatality at 42 &deg;C.</li>
+<li><strong>NoHeatstroke.org</strong> (Jan Null, San Jose State University) -- 1047 US pediatric vehicular heat-stroke deaths since 1998, average ~37 per year, 54% under age 2.</li>
+</ul>
+
+<h2>The data the model is NOT</h2>
+<p>HotCarWatch is a public-domain physical model.  It is not a substitute for
+common sense, parental judgment, or legal advice.  Leaving children alone in
+vehicles is a criminal offense in many US states; HotCarWatch is for educational
+use to demonstrate the speed at which cabin and core body temperatures rise.</p>
+
+<h2>Privacy</h2>
+<p>HotCarWatch runs entirely in your browser.  When you click &ldquo;Save my
+vehicle&rdquo;, the configuration is stored in your browser's
+<code>localStorage</code> only.</p>
+
+</section>
+</main>
+<footer><a href="./">&larr; back to HotCarWatch</a></footer>
+</body>
+</html>
