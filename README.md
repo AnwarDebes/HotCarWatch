@@ -12,6 +12,8 @@
 
 **Never leave them in the car. Free, no login, runs in your browser.**
 
+▶ Watch it in 43 seconds: https://anwardebes.github.io/shorts/#hotcar
+
 </div>
 
 ---
